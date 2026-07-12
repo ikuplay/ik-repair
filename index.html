@@ -431,7 +431,7 @@
         </div>
         <div class="row">
           <span class="ic"><svg viewBox="0 0 24 24"><path d="M4 4h16v16H4z"/><path d="m4 6 8 6 8-6"/></svg></span>
-          <div><div class="lbl">Email</div><div class="val"><a href="mailto:hello@ik-repair.com">hello@ik-repair.com</a></div></div>
+          <div><div class="lbl">Email</div><div class="val"><a href="mailto:Ibkuplay@gmail.com">Ibkuplay@gmail.com</a></div></div>
         </div>
         <div class="row">
           <span class="ic"><svg viewBox="0 0 24 24"><path d="M21 10c0 7-9 12-9 12s-9-5-9-12a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg></span>
@@ -446,19 +446,25 @@
       <div class="quote">
         <h3>Request a quote</h3>
         <p class="sub">No obligation. We'll reply with an estimate range for your device.</p>
-        <div class="field"><label for="n">Your name</label><input id="n" type="text" placeholder="Full name"></div>
-        <div class="field"><label for="c">Phone or email</label><input id="c" type="text" placeholder="How we reach you"></div>
-        <div class="field"><label for="d">What needs fixing?</label>
-          <select id="d">
-            <option>Kitchen or laundry appliance</option>
-            <option>Home or shop electronics</option>
-            <option>Electrical / wiring work</option>
-            <option>Small appliance or power tool</option>
-            <option>Not sure — please advise</option>
-          </select>
-        </div>
-        <div class="field"><label for="m">Describe the fault</label><textarea id="m" placeholder="e.g. Washing machine drains but won't spin"></textarea></div>
-        <button class="btn btn-primary" id="send" style="width:100%;justify-content:center">Send request</button>
+        <!-- Quote requests are emailed to Ibkuplay@gmail.com -->
+        <form action="https://formsubmit.co/Ibkuplay@gmail.com" method="POST">
+          <input type="hidden" name="_subject" value="New repair quote request — IK-Repair">
+          <input type="hidden" name="_template" value="table">
+          <input type="hidden" name="_captcha" value="true">
+          <div class="field"><label for="n">Your name</label><input id="n" name="Name" type="text" placeholder="Full name" required></div>
+          <div class="field"><label for="c">Phone or email</label><input id="c" name="Contact" type="text" placeholder="How we reach you" required></div>
+          <div class="field"><label for="d">What needs fixing?</label>
+            <select id="d" name="Category">
+              <option>Kitchen or laundry appliance</option>
+              <option>Home or shop electronics</option>
+              <option>Electrical / wiring work</option>
+              <option>Small appliance or power tool</option>
+              <option>Not sure — please advise</option>
+            </select>
+          </div>
+          <div class="field"><label for="m">Describe the fault</label><textarea id="m" name="Fault" placeholder="e.g. Washing machine drains but won't spin" required></textarea></div>
+          <button class="btn btn-primary" type="submit" style="width:100%;justify-content:center">Send request</button>
+        </form>
       </div>
     </div>
   </div>
@@ -494,16 +500,6 @@
         target.scrollIntoView({behavior:'smooth',block:'start'});
       }
     });
-  });
-
-  // quote form -> opens email with prefilled details (static site, no backend)
-  document.getElementById('send').addEventListener('click',()=>{
-    const n=document.getElementById('n').value.trim();
-    const c=document.getElementById('c').value.trim();
-    const d=document.getElementById('d').value;
-    const m=document.getElementById('m').value.trim();
-    const body=encodeURIComponent(`Name: ${n}\nContact: ${c}\nCategory: ${d}\nFault: ${m}`);
-    window.location.href=`mailto:hello@ik-repair.com?subject=${encodeURIComponent('Repair quote request')}&body=${body}`;
   });
 </script>
 </body>
